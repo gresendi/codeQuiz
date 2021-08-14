@@ -14,6 +14,9 @@ const renderScores = () => {
               ${key.percentage}
             </div>
             <div class="col">
+              ${key.correct}
+            </div>
+            <div class="col">
               ${key.elapsedTime} seconds
             </div>
 

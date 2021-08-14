@@ -85,7 +85,7 @@ const renderQuestion = (q) => {
   }
   else{
     clearInterval(timer)
-    let elapsedTime = document.getElementById('seconds').textContent 
+    let elapsedTime =100 - document.getElementById('seconds').textContent 
     document.getElementById('questions').innerHTML = ''
     const finalScore = document.createElement('div')
     percentage = correct / (correct + incorrect)
@@ -109,7 +109,7 @@ const renderQuestion = (q) => {
       console.log("caught")
       let name = document.getElementById('initials').value
       console.log(name)
-      scores.push({ name, percentage,elapsedTime})
+      scores.push({ name, percentage,correct,elapsedTime})
 
       localStorage.setItem('scores', JSON.stringify(scores))
       location.reload();
