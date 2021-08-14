@@ -1,8 +1,22 @@
 const scores = JSON.parse(localStorage.getItem('scores')) || []
+let data =[]
+scores.forEach(element => {
+  data.push(element)
+  
+})
+
+data.sort(function (a, b) {
+  return a.name.localeCompare(b.name) || b.correct - a.correct
+})
+
+console.log('hi')
+console.log(data)
+
+
 
 const renderScores = () => {
 
-  scores.forEach((key) => {
+  data.forEach((key) => {
     const scoreElem = document.createElement('div')
 
     scoreElem.innerHTML = `
