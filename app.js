@@ -33,8 +33,8 @@ let index = 0
 let correct = 0;
 let incorrect =0;
 let percentage = 0
-
-
+let timer =''
+let seconds =100
 
 
 const renderQuestion = (q) => {
@@ -84,6 +84,8 @@ const renderQuestion = (q) => {
   index++
   }
   else{
+    clearInterval(timer)
+    let elapsedTime = document.getElementById('seconds').textContent 
     document.getElementById('questions').innerHTML = ''
     const finalScore = document.createElement('div')
     percentage = correct / (correct + incorrect)
@@ -92,6 +94,7 @@ const renderQuestion = (q) => {
         <h2>Answers Correct: ${correct}</h2>
         <h2>Incorrect: ${incorrect}</h2>
         <h2>Percentage: ${percentage}</h2>
+        <h2>Elapsed Time: ${elapsedTime}</h2>
         <form>
           <div class="mb-3">
             <label for="initials" class="form-label text-white">Enter your initials to record your score!</label>
@@ -106,7 +109,7 @@ const renderQuestion = (q) => {
       console.log("caught")
       let name = document.getElementById('initials').value
       console.log(name)
-      scores.push({ name, percentage })
+      scores.push({ name, percentage,elapsedTime})
 
       localStorage.setItem('scores', JSON.stringify(scores))
       location.reload();
@@ -125,6 +128,10 @@ const renderQuestion = (q) => {
 
 document.getElementById('start').addEventListener('click', event => {
   index=0
+  timer = setInterval(() => {
+    seconds--
+    document.getElementById('seconds').innerText = seconds
+  }, 1000)
 renderQuestion(questions[index])
   
 })
@@ -156,8 +163,4 @@ document.addEventListener('click', event =>{
 
 
 
-let seconds = 100
-setInterval(() => {
-  seconds--
-  document.getElementById('seconds').innerText = seconds
-}, 1000)
+

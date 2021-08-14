@@ -14,7 +14,7 @@ const renderScores = () => {
               ${key.percentage}
             </div>
             <div class="col">
-              Time
+              ${key.elapsedTime} seconds
             </div>
 
           </div>
