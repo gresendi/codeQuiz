@@ -156,7 +156,7 @@ document.addEventListener('click', event =>{
   else if(event.target.classList.contains('incorrect')){
     event.target.classList.add('red')
     incorrect++
-    seconds-=90
+    seconds-=20
     timer = setInterval(() => {
       if (seconds <= 0) {
         seconds = 0
