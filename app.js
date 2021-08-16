@@ -36,7 +36,7 @@ let percentage = 0
 let timer =''
 let seconds =100
 
-
+//testing
 const renderQuestion = (q) => {
   if(index<questions.length)
   {
