@@ -83,6 +83,7 @@ const renderQuestion = (q) => {
   document.getElementById('questions').append(questionElem)
   index++
   }
+
   else{
     clearInterval(timer)
     let elapsedTime =100 - document.getElementById('seconds').textContent 
@@ -129,7 +130,13 @@ const renderQuestion = (q) => {
 document.getElementById('start').addEventListener('click', event => {
   index=0
   timer = setInterval(() => {
-    seconds--
+    
+    if(seconds<=0)
+    {
+      seconds =0
+    }else{
+      seconds--
+    }
     document.getElementById('seconds').innerText = seconds
   }, 1000)
 renderQuestion(questions[index])
@@ -140,7 +147,7 @@ document.addEventListener('click', event =>{
   // event.preventDefault()
   if(event.target.classList.contains('correct'))
   {
-    event.target.classList.add('green')
+   event.target.classList.add('green')
     correct++
     alert("You got this one right!")
     renderQuestion(questions[index])
@@ -149,7 +156,22 @@ document.addEventListener('click', event =>{
   else if(event.target.classList.contains('incorrect')){
     event.target.classList.add('red')
     incorrect++
-    alert("You got this one wrong!")
+    seconds-=90
+    timer = setInterval(() => {
+      if (seconds <= 0) {
+        seconds = 0
+      } else {
+        seconds--
+      }
+      document.getElementById('seconds').innerText = seconds
+    }, 1000)
+    
+    alert("You got this one wrong! -20 sec")
+    if(seconds<=0){
+      index= questions.length
+      document.getElementById('seconds').innerText = 0
+      
+    }
     renderQuestion(questions[index])
     
   }
